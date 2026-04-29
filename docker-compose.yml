@@ -10,9 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./pokesector_database.sql:/docker-entrypoint-initdb.d/01-pokesector_database.sql
-      # seed_data.sql es una inserción de datos de prueba
-      - ./seed_data.sql:/docker-entrypoint-initdb.d/02-seed_data.sql
+      - ./pokesector_database.sql:/docker-entrypoint-initdb.d/pokesector_database.sql
     networks:
       - pokesector_net
 
