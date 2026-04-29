@@ -1,4 +1,5 @@
 import { User } from '../models/index.js';
+import { getUserStats } from '../services/index.js';
 
 export async function getAllUsers(req, res) {
   try {
@@ -48,5 +49,14 @@ export async function deleteUser(req, res) {
     res.json({ message: 'Usuario eliminado' });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+}
+
+export async function getUserStats(req, res) {
+  try {
+    const stats = await getUserStats(req.params.id);
+    res.json(stats);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
   }
 }
