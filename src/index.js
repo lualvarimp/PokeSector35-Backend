@@ -7,6 +7,7 @@ import './models/index.js';
 import cors from 'cors';
 import express from 'express';
 import routes from './routes/index.js';
+import { errorHandler } from './middlewares/index.js';
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api', routes);
+
+// Error handler (debe ir al final)
+app.use(errorHandler);
 
 const startServer = async () => {
   try {
