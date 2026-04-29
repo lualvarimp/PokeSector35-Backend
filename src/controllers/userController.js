@@ -52,7 +52,7 @@ export async function deleteUser(req, res) {
   }
 }
 
-export async function getUserStats(req, res) {
+export async function getStats(req, res) {
   try {
     const stats = await getUserStats(req.params.id);
     res.json(stats);

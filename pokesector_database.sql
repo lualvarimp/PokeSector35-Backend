@@ -1,7 +1,11 @@
 -- ============================================================================
--- POKÉSECTOR 35 — SCRIPT SQL PARA POSTGRESQL
+-- POKÉSECTOR 35 — SCRIPT SQL PARA POSTGRESQL (VERSIÓN FINAL)
+-- ============================================================================
+-- Este archivo crea todas las tablas necesarias para el backend.
+-- Incluye borrado lógico (soft delete) de usuarios.
 -- ============================================================================
 
+-- Eliminar tablas si existen (útil para limpiar la BD durante desarrollo)
 DROP TABLE IF EXISTS captured_pokemon CASCADE;
 DROP TABLE IF EXISTS ranking CASCADE;
 DROP TABLE IF EXISTS game_slots CASCADE;
@@ -10,6 +14,10 @@ DROP TABLE IF EXISTS users CASCADE;
 -- ============================================================================
 -- TABLA 1: USERS
 -- ============================================================================
+-- Almacena los jugadores registrados del sistema.
+-- username es único porque actúa como identificador.
+-- role: 'user' para jugadores normales, 'admin' para administradores.
+-- deleted_at: NULL si usuario estáactivo. Fecha si esá eliminado (borrado lógico).
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -50,6 +58,7 @@ CREATE TABLE game_slots (
 -- ============================================================================
 -- Almacena cada captura individual realizada por el usuario registrado.
 
+
 CREATE TABLE captured_pokemon (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -75,13 +84,31 @@ CREATE TABLE ranking (
 );
 
 -- ============================================================================
+-- TABLA 5: REFRESH_TOKENS
+-- ============================================================================
+-- Almacena los refresh tokens para renovar access tokens.
+
+CREATE TABLE refresh_tokens (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token VARCHAR(500) NOT NULL UNIQUE,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_refresh_tokens_user_id ON refresh_tokens(user_id);
+
+-- ============================================================================
 -- VIEW: RANKING_VIEW
 -- ============================================================================
 -- Vista que combina datos de ranking + usuarios para mostrar el ranking.
 -- Muestra: usuario, pokémon capturados, pokémon escapados, dificultad y fecha.
 -- Se usa para mostrar el ranking en la pantalla del juego.
--- Solo aparecen partidas con mínimo 10 encuentros totales (capturados + escapados).
 -- El porcentaje de captura se calcula en el backend (JavaScript), no aquí.
+
+-- Para el proyecto con React: 
+-- Más Pokémon capturados por dificultad
+-- Mejor % captura/encuentros por dificultad (mínimo de 10 encuentro por partida)
 
 CREATE VIEW ranking_view AS
 SELECT 
@@ -97,3 +124,4 @@ JOIN users u ON r.user_id = u.id
 WHERE u.deleted_at IS NULL
   AND (r.captured_count + r.escaped_count) >= 10
 ORDER BY r.difficulty_id, r.captured_count DESC;
+
