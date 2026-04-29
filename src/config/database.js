@@ -1,7 +1,8 @@
 import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
 
+import dotenv from 'dotenv';
 dotenv.config();
+console.log('PUERTO DB:', process.env.DB_PORT)
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
