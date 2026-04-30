@@ -3,6 +3,7 @@ import GameSlot from './gameSlotModels.js';
 import CapturedPokemon from './capturedPokemonModels.js';
 import Ranking from './rankingModels.js';
 import RefreshToken from './refreshTokenModels.js';
+import GameReplay from './gameReplayModels.js';
 
 // Relaciones
 User.hasMany(GameSlot, { foreignKey: 'user_id', onDelete: 'CASCADE' });
@@ -20,4 +21,10 @@ Ranking.belongsTo(User, { foreignKey: 'user_id' });
 User.hasMany(RefreshToken, { foreignKey: 'user_id', onDelete: 'CASCADE' });
 RefreshToken.belongsTo(User, { foreignKey: 'user_id' });
 
-export { User, GameSlot, CapturedPokemon, Ranking, RefreshToken };
+User.hasMany(GameReplay, { foreignKey: 'user_id', onDelete: 'CASCADE' });
+GameReplay.belongsTo(User, { foreignKey: 'user_id' });
+
+GameSlot.hasMany(GameReplay, { foreignKey: 'slot_id', onDelete: 'CASCADE' });
+GameReplay.belongsTo(GameSlot, { foreignKey: 'slot_id' });
+
+export { User, GameSlot, CapturedPokemon, Ranking, RefreshToken, GameReplay };
