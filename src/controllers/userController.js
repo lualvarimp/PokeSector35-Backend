@@ -45,8 +45,9 @@ export async function deleteUser(req, res) {
     if (!user) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
-    await user.destroy();
-    res.json({ message: 'Usuario eliminado' });
+    // Soft delete: marcar deleted_at
+    await user.update({ deleted_at: new Date() });
+    res.json({ message: 'Usuario eliminado', user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -58,5 +59,37 @@ export async function getStats(req, res) {
     res.json(stats);
   } catch (error) {
     res.status(404).json({ error: error.message });
+  }
+}
+
+export async function restoreUser(req, res) {
+  try {
+    const userId = req.params.id;
+    const user = await User.findByPk(userId, { paranoid: false });
+    
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    
+    await user.update({ deleted_at: null });
+    res.json({ message: 'Usuario restaurado', user });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export async function permanentDeleteUser(req, res) {
+  try {
+    const userId = req.params.id;
+    const user = await User.findByPk(userId, { paranoid: false });
+    
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    
+    await user.destroy({ force: true });
+    res.json({ message: 'Usuario eliminado permanentemente' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 }
