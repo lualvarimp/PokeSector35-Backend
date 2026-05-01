@@ -99,6 +99,25 @@ CREATE TABLE refresh_tokens (
 CREATE INDEX idx_refresh_tokens_user_id ON refresh_tokens(user_id);
 
 -- ============================================================================
+-- TABLA 6: GAME_REPLAY
+-- ============================================================================
+-- Almacena el replay completo de una partida completada (array de movimientos).
+-- Los movimientos se recopilan en localStorage mientras se juega.
+-- Al terminar la partida, se guarda el array completo de movimientos aquí.
+-- Útil para análisis de datos, mapas de calor y mejora de mapas.
+
+CREATE TABLE game_replay (
+    id SERIAL PRIMARY KEY,
+    slot_id INTEGER REFERENCES game_slots(id) ON DELETE CASCADE,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    movements JSON NOT NULL,
+    completed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_game_replay_user_id ON game_replay(user_id);
+CREATE INDEX idx_game_replay_slot_id ON game_replay(slot_id);
+
+-- ============================================================================
 -- VIEW: RANKING_VIEW
 -- ============================================================================
 -- Vista que combina datos de ranking + usuarios para mostrar el ranking.

@@ -1,0 +1,110 @@
+extends layout
+
+block content
+  .dashboard-container
+    //- Encabezado
+    .dashboard-header
+      h1.dashboard-title Dashboard
+      p.dashboard-subtitle Bienvenido al panel de control
+
+    //- Stats Cards
+    .stats-grid
+      .stat-card
+        .stat-icon 👥
+        .stat-content
+          .stat-label Usuarios Registrados
+          .stat-value#totalUsers 0
+          .stat-change +5 esta semana
+
+      .stat-card
+        .stat-icon 🎮
+        .stat-content
+          .stat-label Partidas Completadas
+          .stat-content
+          .stat-value#totalGames 0
+          .stat-change +12 esta semana
+
+      .stat-card
+        .stat-icon 🔴
+        .stat-content
+          .stat-label Pokémon Capturados
+          .stat-value#totalPokemon 0
+          .stat-change +48 esta semana
+
+    //- Top 3 Jugadores
+    .dashboard-section
+      .section-header
+        h2.section-title Top 3 Jugadores
+        a.section-link(href='/admin/ranking') Ver Ranking Completo →
+
+      .top-players
+        .player-card
+          .player-rank 🥇
+          .player-info
+            .player-name#player1Name Cargando...
+            .player-stats
+              span#player1Captures 0 capturas
+              span  | 
+              span#player1Difficulty Dificultad
+
+        .player-card
+          .player-rank 🥈
+          .player-info
+            .player-name#player2Name Cargando...
+            .player-stats
+              span#player2Captures 0 capturas
+              span  | 
+              span#player2Difficulty Dificultad
+
+        .player-card
+          .player-rank 🥉
+          .player-info
+            .player-name#player3Name Cargando...
+            .player-stats
+              span#player3Captures 0 capturas
+              span  | 
+              span#player3Difficulty Dificultad
+
+    //- Sección de Dificultades
+    .dashboard-section
+      .section-header
+        h2.section-title Partidas por Dificultad
+        p.section-subtitle Distribución de partidas completadas
+
+      .difficulty-grid
+        .difficulty-card
+          .difficulty-label Fácil
+          .difficulty-value#easyCount 0
+          .difficulty-bar
+            .difficulty-fill#easyFill(style='width: 0%')
+
+        .difficulty-card
+          .difficulty-label Normal
+          .difficulty-value#normalCount 0
+          .difficulty-bar
+            .difficulty-fill#normalFill(style='width: 0%')
+
+        .difficulty-card
+          .difficulty-label Difícil
+          .difficulty-value#hardCount 0
+          .difficulty-bar
+            .difficulty-fill#hardFill(style='width: 0%')
+
+        .difficulty-card
+          .difficulty-label Infernal
+          .difficulty-value#infernalCount 0
+          .difficulty-bar
+            .difficulty-fill#infernalFill(style='width: 0%')
+
+    //- Acciones Rápidas
+    .dashboard-actions
+      a.action-button.action-users(href='/admin/users')
+        span 👥
+        span Gestionar Usuarios
+
+      a.action-button.action-ranking(href='/admin/ranking')
+        span 🏆
+        span Ver Ranking
+
+block scripts
+  script(src='/js/dashboard.js')

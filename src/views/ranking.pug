@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .ranking-container
+    //- Encabezado
+    .ranking-header
+      h1.ranking-title Ranking Global
+      p.ranking-subtitle Mejores jugadores por dificultad
+
+    //- Filtros
+    .ranking-filters
+      .filter-group
+        label(for='difficultyFilter') Filtrar por Dificultad:
+        select#difficultyFilter.filter-select
+          option(value='todos') Todas
+          option(value='facil') Fácil
+          option(value='normal') Normal
+          option(value='dificil') Difícil
+          option(value='infernal') Infernal
+
+      .filter-group
+        label(for='sortBy') Ordenar por:
+        select#sortBy.filter-select
+          option(value='captures') Más Capturas
+          option(value='percentage') % Captura
+
+    //- Tabla de ranking
+    .table-wrapper
+      table.ranking-table
+        thead
+          tr
+            th Posición
+            th Usuario
+            th Capturas
+            th Escapadas
+            th % Captura
+            th Dificultad
+            th Completado
+            th Acciones
+
+        tbody#rankingTableBody
+          tr
+            td(colspan='8').loading Cargando ranking...
+
+    //- Paginación
+    .ranking-pagination
+      span#rankingCount Total partidas: 0
+
+block scripts
+  script(src='/js/ranking.js')

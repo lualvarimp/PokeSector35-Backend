@@ -1,0 +1,285 @@
+/* ============================================================================
+   POKÉSECTOR ADMIN PANEL - USERS CSS
+   Complementa a layout.css
+   ============================================================================ */
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.users-header {
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.users-title {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 0.5rem;
+}
+
+.users-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ============================================================================
+   FILTROS
+   ============================================================================ */
+
+.users-filters {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  label {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+}
+
+.filter-select {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover {
+    border-color: var(--green-accent);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--green-accent);
+    box-shadow: 0 0 0 3px rgba(129, 170, 99, 0.2);
+  }
+}
+
+/* ============================================================================
+   TABLA DE USUARIOS
+   ============================================================================ */
+
+.table-wrapper {
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--green-accent);
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    border-radius: 0.5rem;
+  }
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+
+  thead {
+    background-color: var(--green-bg);
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  th {
+    padding: 1.25rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--green-accent);
+
+    &.sortable {
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition);
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:hover {
+        background-color: var(--green-med);
+      }
+
+      span {
+        flex: 1;
+      }
+
+      .sort-icon {
+        font-size: 0.875rem;
+        transition: var(--transition);
+        opacity: 0.6;
+      }
+
+      &.sort-asc,
+      &.sort-desc {
+        .sort-icon {
+          opacity: 1;
+        }
+      }
+
+      &.sort-asc .sort-icon {
+        transform: scaleY(1);
+      }
+
+      &.sort-desc .sort-icon {
+        transform: scaleY(-1);
+      }
+    }
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+
+    &.loading {
+      text-align: center;
+      color: var(--text-secondary);
+      padding: 2rem 1rem;
+    }
+  }
+
+  tbody tr {
+    transition: var(--transition);
+
+    &:hover {
+      background-color: rgba(129, 170, 99, 0.1);
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+/* ============================================================================
+   ACCIONES
+   ============================================================================ */
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: clamp(0.75rem, 0.7rem + 0.3vw, 0.875rem);
+  border: none;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+  font-family: var(--font-family);
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-view {
+  background-color: var(--green-accent);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--green-med);
+  }
+}
+
+.btn-delete {
+  background-color: var(--red);
+  color: var(--white);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn-restore {
+  background-color: var(--green-med);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--green-dark);
+  }
+}
+
+/* ============================================================================
+   ROLE BADGE
+   ============================================================================ */
+
+.role-badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.35rem;
+  font-size: clamp(0.75rem, 0.7rem + 0.3vw, 0.875rem);
+  font-weight: 600;
+
+  &.admin {
+    background-color: rgba(129, 170, 99, 0.2);
+    color: var(--green-dark);
+  }
+
+  &.user {
+    background-color: rgba(151, 16, 16, 0.1);
+    color: var(--red);
+  }
+}
+
+/* ============================================================================
+   PAGINACIÓN
+   ============================================================================ */
+
+.users-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+/* ============================================================================
+   USUARIOS CONTAINER
+   ============================================================================ */
+
+.users-container {
+  width: 100%;
+}

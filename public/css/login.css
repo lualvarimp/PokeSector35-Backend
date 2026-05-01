@@ -1,0 +1,193 @@
+/* ============================================================================
+   POKÉSECTOR ADMIN PANEL - LOGIN CSS (ESTILOS ESPECÍFICOS)
+   Complementa a layout.css
+   ============================================================================ */
+
+/* ============================================================================
+   NAVBAR - Ocultar menú en login
+   ============================================================================ */
+
+nav.navbar ul {
+  display: none;
+}
+
+/* ============================================================================
+   MAIN - Formulario de Login Centrado
+   ============================================================================ */
+
+.login-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2rem + 2vw, 3rem);
+  background-color: var(--bg-primary);
+  transition: var(--transition);
+}
+
+.login-container {
+  width: 100%;
+  max-width: clamp(20rem, 25rem + 5vw, 28rem);
+}
+
+.login-card {
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--green-accent);
+  border-radius: 1rem;
+  padding: clamp(1.5rem, 2rem + 1vw, 2.5rem);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(129, 170, 99, 0.3);
+  }
+}
+
+.login-title {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  color: var(--green-dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ============================================================================
+   FORMULARIO
+   ============================================================================ */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  input {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: var(--transition);
+
+    &:focus {
+      outline: none;
+      border-color: var(--green-accent);
+      box-shadow: 0 0 0 3px rgba(129, 170, 99, 0.2);
+    }
+
+    &::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.6;
+    }
+  }
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
+
+.btn-login {
+  width: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, var(--green-accent), var(--green-med));
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background: linear-gradient(135deg, var(--green-med), var(--green-dark));
+    box-shadow: 0 4px 12px rgba(129, 170, 99, 0.4);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+/* ============================================================================
+   MENSAJES DE ERROR/ÉXITO
+   ============================================================================ */
+
+.message-area {
+  margin-top: 1.5rem;
+  min-height: 1rem;
+
+  &.error {
+    padding: 0.75rem 1rem;
+    background-color: rgba(151, 16, 16, 0.1);
+    border: 2px solid var(--red);
+    border-radius: 0.5rem;
+    color: var(--red);
+    font-weight: 600;
+    text-align: center;
+  }
+
+  &.success {
+    padding: 0.75rem 1rem;
+    background-color: rgba(129, 170, 99, 0.1);
+    border: 2px solid var(--green-accent);
+    border-radius: 0.5rem;
+    color: var(--green-dark);
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+
+.login-footer {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 1rem;
+  text-align: center;
+  border-top: 2px solid var(--green-accent);
+  font-size: clamp(0.75rem, 0.7rem + 0.3vw, 0.875rem);
+  transition: var(--transition);
+
+  p {
+    margin: 0;
+  }
+}
+
+/* Override: Body para login (sin navbar) */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

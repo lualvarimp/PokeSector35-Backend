@@ -17,7 +17,57 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ========== RUTAS ==========
+// ========== CONFIGURACIÓN DE VISTAS (PUG) ==========
+app.use(express.static('public'));
+app.set('views', './src/views');
+app.set('view engine', 'pug');
+
+// ========== RUTAS DE VISTAS ==========
+app.get('/', (req, res) => {
+  res.redirect('/login');
+});
+
+app.get('/login', (req, res) => {
+  res.render('login', { title: 'PokéSector Admin - Login' });
+});
+
+app.get('/admin/dashboard', (req, res) => {
+  res.render('dashboard', { title: 'PokéSector Admin - Dashboard' });
+});
+
+app.get('/user/dashboard', (req, res) => {
+  res.render('dashboard', { title: 'PokéSector - Mi Dashboard' });
+});
+
+app.get('/admin/users', (req, res) => {
+  res.render('users', { title: 'PokéSector Admin - Usuarios' });
+});
+
+app.get('/user/users', (req, res) => {
+  res.render('users', { title: 'PokéSector - Usuarios' });
+});
+
+app.get('/admin/ranking', (req, res) => {
+  res.render('ranking', { title: 'PokéSector Admin - Ranking' });
+});
+
+app.get('/user/ranking', (req, res) => {
+  res.render('ranking', { title: 'PokéSector - Ranking' });
+});
+
+app.get('/admin/users/:id', (req, res) => {
+  res.render('users-detail', { title: 'PokéSector Admin - Detalles Usuario' });
+});
+
+app.get('/admin/pokedex', (req, res) => {
+  res.render('pokedex', { title: 'PokéSector Admin - Pokédex' });
+});
+
+app.get('/admin/slots', (req, res) => {
+  res.render('slots', { title: 'PokéSector Admin - Slots' });
+});
+
+// ========== RUTAS API ==========
 app.use('/api', routes);
 
 // ========== ERROR HANDLER ==========
