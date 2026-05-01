@@ -9,7 +9,7 @@
 -- ============================================================================
 -- 1. INSERTAR USUARIOS FICTICIOS
 -- ============================================================================
--- Usuario: Ash, Misty, Brock, Jessie, Luis (admin)
+-- Usuario: Ash, Misty, Brock, Jessie, Admin (admin)
 -- Contraseña (todas): testpass123
 
 INSERT INTO users (username, password_hash, role, created_at) VALUES
@@ -17,7 +17,7 @@ INSERT INTO users (username, password_hash, role, created_at) VALUES
 ('Misty', '$2b$10$V8nb0ZLMZIbPeKTnOIyav.UdLwSYvjh4Z0lVpNQYUe2yI/TFOXff6', 'user', NOW()),
 ('Brock', '$2b$10$V8nb0ZLMZIbPeKTnOIyav.UdLwSYvjh4Z0lVpNQYUe2yI/TFOXff6', 'user', NOW()),
 ('Jessie', '$2b$10$V8nb0ZLMZIbPeKTnOIyav.UdLwSYvjh4Z0lVpNQYUe2yI/TFOXff6', 'user', NOW()),
-('Luis', '$2b$10$V8nb0ZLMZIbPeKTnOIyav.UdLwSYvjh4Z0lVpNQYUe2yI/TFOXff6', 'admin', NOW());
+('Admin', '$2b$10$V8nb0ZLMZIbPeKTnOIyav.UdLwSYvjh4Z0lVpNQYUe2yI/TFOXff6', 'admin', NOW());
 
 -- ============================================================================
 -- 2. INSERTAR SLOTS DE PARTIDAS
