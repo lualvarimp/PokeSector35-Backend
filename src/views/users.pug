@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  .users-container
+    //- Encabezado
+    .users-header
+      h1.users-title Gestionar Usuarios
+      p.users-subtitle Administra los usuarios del sistema
+
+    //- Filtros
+    .users-filters
+      .filter-group
+        label(for='roleFilter') Filtrar por Rol:
+        select#roleFilter.filter-select
+          option(value='todos') Todos
+          option(value='user') Users
+          option(value='admin') Admins
+
+    //- Tabla de usuarios
+    .table-wrapper
+      table.users-table
+        thead
+          tr
+            th.sortable#usernameHeader
+              span Username
+              i.sort-icon 🔤
+            th.sortable#explorerHeader
+              span Explorador
+              i.sort-icon 🔤
+            th.sortable#roleHeader
+              span Role
+              i.sort-icon 🔤
+            th Registrado
+            th Acciones
+
+        tbody#usersTableBody
+          tr
+            td(colspan='5').loading Cargando usuarios...
+
+    //- Paginación (opcional)
+    .users-pagination
+      span#userCount Total usuarios: 0
+
+block scripts
+  script(src='/js/users.js')

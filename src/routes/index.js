@@ -15,4 +15,8 @@ router.use('/users', capturedPokemonRoutes);
 router.use('/users', replayRoutes);
 router.use('/ranking', rankingRoutes);
 
+router.get('/admin/dashboard', (req, res) => {
+  res.render('layout', { title: 'PokéSector Admin - Dashboard' });
+});
+
 export default router;
