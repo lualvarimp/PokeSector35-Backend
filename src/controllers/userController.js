@@ -1,5 +1,6 @@
 import { User } from '../models/index.js';
 import { getUserStats } from '../services/index.js';
+import bcrypt from 'bcrypt';
 
 export async function getAllUsers(req, res) {
   try {
@@ -89,6 +90,31 @@ export async function permanentDeleteUser(req, res) {
     
     await user.destroy({ force: true });
     res.json({ message: 'Usuario eliminado permanentemente' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export async function changePassword(req, res) {
+  try {
+    const { new_password } = req.body;
+    const userId = req.params.id;
+    
+    if (!new_password || new_password.length < 6) {
+      return res.status(400).json({ error: 'Contraseña debe tener mínimo 6 caracteres' });
+    }
+    
+    const user = await User.findByPk(userId);
+    
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    
+    // Hashear con bcrypt
+    const hashedPassword = await bcrypt.hash(new_password, 10);
+    await user.update({ password_hash: hashedPassword });
+    
+    res.json({ message: 'Contraseña actualizada correctamente' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
