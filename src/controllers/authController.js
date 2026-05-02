@@ -1,5 +1,13 @@
 import { registerUser, loginUser, generateAccessToken, generateRefreshToken, refreshAccessToken } from '../services/index.js';
 
+/**
+ * Endpoint: POST /api/auth/register
+ * Crea una nueva cuenta de usuario
+ * @param {Object} req - Express request
+ * @param {string} req.body.username - Nombre de usuario
+ * @param {string} req.body.password - Contraseña
+ * @param {Object} res - Express response
+ */
 export async function register(req, res) {
   try {
     const { username, password } = req.body;
@@ -18,6 +26,14 @@ export async function register(req, res) {
   }
 }
 
+/**
+ * Endpoint: POST /api/auth/login
+ * Autentica un usuario y devuelve tokens JWT
+ * @param {Object} req - Express request
+ * @param {string} req.body.username - Nombre de usuario
+ * @param {string} req.body.password - Contraseña
+ * @param {Object} res - Express response
+ */
 export async function login(req, res) {
   try {
     const { username, password } = req.body;
@@ -36,6 +52,13 @@ export async function login(req, res) {
   }
 }
 
+/**
+ * Endpoint: POST /api/auth/refresh
+ * Genera un nuevo access token usando un refresh token válido
+ * @param {Object} req - Express request
+ * @param {string} req.body.refresh_token - Refresh token
+ * @param {Object} res - Express response
+ */
 export async function refresh(req, res) {
   try {
     const { refresh_token } = req.body;
@@ -51,6 +74,12 @@ export async function refresh(req, res) {
   }
 }
 
+/**
+ * Endpoint: POST /api/auth/logout
+ * Cierra la sesión del usuario (actualmente es un stub)
+ * @param {Object} req - Express request
+ * @param {Object} res - Express response
+ */
 export async function logout(req, res) {
   try {
     res.json({ message: 'Logout exitoso' });

@@ -5,17 +5,18 @@
 **PokéSector 35 (Back-end)** 
 
 
-> Un panel administrativo y sistema backend completo para gestionar el juego PokéSector 35, un juego retro de captura de Pokémon basado en la probabilidad
+> Un panel administrativo y sistema backend completo para gestionar PokéSector 35, un juego retro de captura de Pokémon basado en la probabilidad
 
 Bienvenido a **PokéSector 35**, un proyecto backend construido con **Node.js + Express** y **PostgreSQL**. Este sistema maneja toda la lógica de un juego donde los jugadores capturan Pokémon, avanzan por el mapa y compiten en un ranking global. Se trata de un backend robusto, escalable y bien estructurado que proporciona todas las herramientas necesarias para gestionar usuarios, partidas guardadas, capturas de Pokémon y un sistema de ranking competitivo.
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Características](#características)
 - [Requisitos Previos](#requisitos-previos)
 - [Instalación Rápida](#instalación-rápida)
+- [Documentación del API](#documentación-del-api)
 - [Configuración del Proyecto](#configuración-del-proyecto)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [API Reference](#api-reference)
@@ -133,6 +134,54 @@ Para acceder a pgAdmin (la herramienta visual para gestionar la base de datos), 
 Email: xxx
 Contraseña: xxx
 ```
+
+---
+
+## Documentación del API
+
+### Swagger UI (Documentación Interactiva)
+
+El API incluye documentación interactiva con **Swagger/OpenAPI 3.0**. Una vez que el servidor está ejecutándose, puedes acceder a la documentación completa en:
+
+```
+http://localhost:3000/api-docs
+```
+
+En Swagger UI puedes:
+- Ver todos los endpoints organizados por categoría
+- Leer la descripción detallada de cada endpoint
+- Ver los parámetros requeridos y opcionales
+- **Probar los endpoints directamente desde el navegador** (sin necesidad de Postman)
+- Autenticarte con JWT y probar endpoints protegidos
+- Ver ejemplos de respuesta y códigos de error
+
+### Documentación de Código
+
+El proyecto incluye comentarios **JSDoc** detallados en todos los archivos de backend:
+
+- **[JSDOC_SUMMARY.md](./docs/JSDOC_SUMMARY.md)** - Índice y resumen de toda la documentación JSDoc
+
+### Guías de Swagger
+
+Para entender cómo funciona Swagger en este proyecto:
+
+- **[QUICK_START_SWAGGER.md](./docs/QUICK_START_SWAGGER.md)** - Guía rápida (5 minutos)
+- **[SWAGGER_SETUP.md](./docs/SWAGGER_SETUP.md)** - Guía detallada de instalación y uso
+- **[SWAGGER_SUMMARY.md](./docs/SWAGGER_SUMMARY.md)** - Resumen técnico de la implementación
+
+### Ejemplo: Probar un endpoint en Swagger
+
+1. Abre http://localhost:3000/api-docs en tu navegador
+2. Busca **POST /api/auth/login**
+3. Haz click en él para expandir
+4. Haz click en **"Try it out"**
+5. Rellena los campos:
+   - username: `Ash`
+   - password: `testpass123`
+6. Haz click en **"Execute"**
+7. Verás la respuesta del servidor en tiempo real
+
+---
 
 ### Opción 2: PostgreSQL Instalado Localmente
 
